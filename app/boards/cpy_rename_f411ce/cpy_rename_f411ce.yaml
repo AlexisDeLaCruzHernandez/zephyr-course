@@ -1,0 +1,15 @@
+identifier: cpy_rename_f411ce
+name: Cpy Rename Black Pill V2.0
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gnuarmemb
+supported:
+  - counter
+  - spi
+  - i2c
+  - uart
+  - pwm
+  - adc
+vendor: weact

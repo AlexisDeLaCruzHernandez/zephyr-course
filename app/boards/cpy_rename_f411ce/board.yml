@@ -1,0 +1,6 @@
+board:
+  name: cpy_rename_f411ce
+  full_name: Cpy Rename Black Pill V2.0
+  vendor: zephyr_course
+  socs:
+    - name: stm32f411xe
