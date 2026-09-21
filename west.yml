@@ -4,9 +4,9 @@ manifest:
   projects:
     - name: zephyr
       url: https://github.com/zephyrproject-rtos/zephyr
-      revision: v4.2.0
+      revision: v4.4.0
       import:
         name-allowlist:
           - cmsis_6
-          - hal_espressif
+          - hal_stm32
         path-prefix: deps
