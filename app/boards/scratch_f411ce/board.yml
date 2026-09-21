@@ -1,0 +1,6 @@
+board:
+  name: scratch_f411ce
+  full_name: Scratch Black Pill V2.0
+  vendor: zephyr_course
+  socs:
+    - name: stm32f411xe

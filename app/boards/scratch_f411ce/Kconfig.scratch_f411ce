@@ -1,0 +1,3 @@
+config BOARD_SCRATCH_F411CE
+	select SOC_STM32F411XE
+	

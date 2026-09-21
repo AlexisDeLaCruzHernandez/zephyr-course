@@ -1,0 +1,91 @@
+/dts-v1/;
+#include <st/f4/stm32f411Xe.dtsi>
+#include <st/f4/stm32f411c(c-e)ux-pinctrl.dtsi>
+
+/ {
+    model = "Scratch Black Pill V2.0";
+	compatible = "zephyr_course,scratch_f411ce";
+
+    aliases {
+		led0 = &user_led;
+	};
+
+    chosen {
+		zephyr,console = &usart1;
+		zephyr,sram = &sram0;
+		zephyr,flash = &flash0;
+	};
+
+    leds {
+		compatible = "gpio-leds";
+
+		user_led: led {
+			gpios = <&gpioc 13 GPIO_ACTIVE_LOW>;
+			label = "User LED";
+		};
+	};
+};
+
+&flash0 {
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		boot_partition: partition@0 {
+			label = "mcuboot";
+			reg = <0x00000000 DT_SIZE_K(32)>;
+			read-only;
+		};
+
+		/*
+		 * The flash starting at offset 0x00008000 and ending at
+		 * offset 0x0001ffff (sectors 2 through 4) is reserved for
+		 * use by the application.
+		 */
+
+		slot0_partition: partition@20000 {
+			label = "image-0";
+			reg = <0x00020000 DT_SIZE_K(128)>;
+		};
+
+		slot1_partition: partition@40000 {
+			label = "image-1";
+			reg = <0x00040000 DT_SIZE_K(128)>;
+		};
+
+		scratch_partition: partition@60000 {
+			label = "image-scratch";
+			reg = <0x00060000 DT_SIZE_K(128)>;
+		};
+	};
+};
+
+&usart1 {
+	pinctrl-0 = <&usart1_tx_pa9 &usart1_rx_pa10>;
+	pinctrl-names = "default";
+	status = "okay";
+	current-speed = <115200>;
+};
+
+&clk_hse {
+	clock-frequency = <DT_FREQ_M(25)>;
+	status = "okay";
+};
+
+&pll {
+	div-m = <25>;
+	mul-n = <192>;
+	div-p = <2>;
+	div-q = <4>;
+	clocks = <&clk_hse>;
+	status = "okay";
+};
+
+&rcc {
+	clocks = <&pll>;
+	clock-frequency = <DT_FREQ_M(96)>;
+	ahb-prescaler = <1>;
+	apb1-prescaler = <2>;
+	apb2-prescaler = <1>;
+};
