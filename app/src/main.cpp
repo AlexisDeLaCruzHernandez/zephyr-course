@@ -2,6 +2,7 @@
 #include <zephyr/drivers/sensor.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
+#include "custom_sensor_led.h"
 
 /* The devicetree node identifier for the "app-led" alias. */
 // #define LED_NODE DT_ALIAS(app_led)
@@ -15,6 +16,7 @@ LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 int main(void)
 {
     bool led_state = false;
+    int32_t times_toggled;
 
     // if(!gpio_is_ready_dt(&led)) return 0;
     if(!device_is_ready(custom_sensor_led)) return 0;
@@ -32,8 +34,9 @@ int main(void)
             led_state = false;
         }
 
+        times_toggled = led_toggled(custom_sensor_led);
         // led_state = !led_state;
-        LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
+        LOG_INF("LED state: %s, toggled %d times", led_state ? "ON" : "OFF", times_toggled);
         k_msleep(CONFIG_APP_HEARTBEAT_PERIOD_MS);
     }
     return 0;
