@@ -1,5 +1,16 @@
+&user_led {
+    status = "disabled";
+};
+
 / {
     aliases {
-        app-led = &user_led;
+        // app-led = &user_led;
+        sensor-led = &board_led;
+    };
+
+    board_led: board_led {
+        compatible = "custom,sensor_led";
+        gpios = <&gpioc 13 GPIO_ACTIVE_LOW>;
+        status = "okay";
     };
 };
