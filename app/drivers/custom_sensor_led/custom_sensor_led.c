@@ -1,11 +1,17 @@
 #include <zephyr/drivers/sensor.h>
 #include <zephyr/drivers/gpio.h>
+#include "custom_sensor_led.h"
 
 #define DT_DRV_COMPAT   custom_sensor_led
 
 // Config struct
 struct custom_sensor_led_config {
     struct gpio_dt_spec led;
+};
+
+// Data struct
+struct custom_sensor_led_data {
+    uint32_t times_toggled;
 };
 
 // Turns on the LED
@@ -24,10 +30,22 @@ static int sensor_led_channel_get(const struct device *dev, enum sensor_channel 
     return gpio_pin_set_dt(&cfg->led, 0);
 }
 
+int led_toggled(const struct device *dev)
+{
+    struct custom_sensor_led_data *data = dev->data;
+
+    data->times_toggled++;
+
+    return data->times_toggled;
+}
+
 // Initialize the sensor
 static int sensor_led_init(const struct device *dev) 
 {
     const struct custom_sensor_led_config *cfg = dev->config;
+    struct custom_sensor_led_data *data = dev->data;
+
+    data->times_toggled = 0;
 
     if(!gpio_is_ready_dt(&cfg->led)) {
         return -ENODEV;
@@ -45,11 +63,12 @@ static DEVICE_API(sensor, custom_sensor_led_api) = {
     static const struct custom_sensor_led_config cfg_##inst = { \
         .led = GPIO_DT_SPEC_INST_GET(inst, gpios),              \
     };                                                          \
+    static struct custom_sensor_led_data data_##inst;           \
     DEVICE_DT_INST_DEFINE(                                      \
         inst,                                                   \
         sensor_led_init,                                        \
         NULL,                                                   \
-        NULL,                                                   \
+        &data_##inst,                                           \
         &cfg_##inst,                                            \
         POST_KERNEL,                                            \
         CONFIG_SENSOR_INIT_PRIORITY,                            \
