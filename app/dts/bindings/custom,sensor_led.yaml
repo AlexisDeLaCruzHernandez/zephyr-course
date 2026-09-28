@@ -1,0 +1,8 @@
+description: LED sensor driver
+compatible: "custom,sensor_led"
+include: base.yaml
+
+properties:
+  gpios:
+    type: phandle-array
+    required: true
