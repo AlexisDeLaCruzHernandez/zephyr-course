@@ -1,0 +1,8 @@
+config CUSTOM_SENSOR_LED
+    bool "Led sensor driver"
+    default y
+    depends on DT_HAS_CUSTOM_SENSOR_LED_ENABLED
+    select GPIO
+
+    help
+        Enable the custom led sensor driver
