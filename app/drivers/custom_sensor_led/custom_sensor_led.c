@@ -30,11 +30,14 @@ static int sensor_led_channel_get(const struct device *dev, enum sensor_channel 
     return gpio_pin_set_dt(&cfg->led, 0);
 }
 
-int led_toggled(const struct device *dev)
+int led_toggled(const struct device *dev, uint32_t times_toggled)
 {
     struct custom_sensor_led_data *data = dev->data;
 
-    data->times_toggled++;
+    if(times_toggled == 0xFFFFFFFF)
+        data->times_toggled++;
+    else 
+        data->times_toggled = times_toggled; 
 
     return data->times_toggled;
 }
