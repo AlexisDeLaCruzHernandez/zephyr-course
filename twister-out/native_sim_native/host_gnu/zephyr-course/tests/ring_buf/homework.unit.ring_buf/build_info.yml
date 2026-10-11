@@ -1,0 +1,45 @@
+cmake:
+  application:
+    configuration-dir: '/home/alexis/Repos/zephyr_repo/zephyr-course/tests/ring_buf'
+    source-dir: '/home/alexis/Repos/zephyr_repo/zephyr-course/tests/ring_buf'
+  board:
+    name: 'native_sim'
+    path:
+     - '/home/alexis/Repos/zephyr_repo/deps/zephyr/boards/native/native_sim'
+    qualifiers: 'native'
+    revision: ''
+  devicetree:
+    bindings-dirs:
+     - '/home/alexis/Repos/zephyr_repo/deps/zephyr/dts/bindings'
+    files:
+     - '/home/alexis/Repos/zephyr_repo/deps/zephyr/boards/native/native_sim/native_sim.dts'
+    include-dirs:
+     - '/home/alexis/Repos/zephyr_repo/deps/modules/hal/stm32/dts'
+     - '/home/alexis/Repos/zephyr_repo/deps/zephyr/include'
+     - '/home/alexis/Repos/zephyr_repo/deps/zephyr/include/zephyr'
+     - '/home/alexis/Repos/zephyr_repo/deps/zephyr/dts/common'
+     - '/home/alexis/Repos/zephyr_repo/deps/zephyr/dts/vendor'
+     - '/home/alexis/Repos/zephyr_repo/deps/zephyr/dts/rx'
+     - '/home/alexis/Repos/zephyr_repo/deps/zephyr/dts/x86'
+     - '/home/alexis/Repos/zephyr_repo/deps/zephyr/dts/xtensa'
+     - '/home/alexis/Repos/zephyr_repo/deps/zephyr/dts/sparc'
+     - '/home/alexis/Repos/zephyr_repo/deps/zephyr/dts/riscv'
+     - '/home/alexis/Repos/zephyr_repo/deps/zephyr/dts/posix'
+     - '/home/alexis/Repos/zephyr_repo/deps/zephyr/dts/arm64'
+     - '/home/alexis/Repos/zephyr_repo/deps/zephyr/dts/arm'
+     - '/home/alexis/Repos/zephyr_repo/deps/zephyr/dts/arc'
+     - '/home/alexis/Repos/zephyr_repo/deps/zephyr/dts'
+  kconfig:
+    files:
+     - '/home/alexis/Repos/zephyr_repo/deps/zephyr/boards/native/native_sim/native_sim_defconfig'
+     - '/home/alexis/Repos/zephyr_repo/zephyr-course/tests/ring_buf/prj.conf'
+     - '/home/alexis/Repos/zephyr_repo/zephyr-course/twister-out/native_sim_native/host_gnu/zephyr-course/tests/ring_buf/homework.unit.ring_buf/zephyr/misc/generated/extra_kconfig_options.conf'
+    user-files:
+     - '/home/alexis/Repos/zephyr_repo/zephyr-course/tests/ring_buf/prj.conf'
+  toolchain:
+    name: 'host'
+    path: ''
+  zephyr:
+    version: '4.4.0'
+    zephyr-base: '/home/alexis/Repos/zephyr_repo/deps/zephyr'
+version: '0.1.0'
