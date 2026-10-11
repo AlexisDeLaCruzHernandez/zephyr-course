@@ -351,6 +351,9 @@ NSI_DIR:PATH=/home/alexis/Repos/zephyr_repo/deps/zephyr/scripts/native_simulator
 //Path to a program.
 OPENOCD:FILEPATH=/usr/bin/openocd
 
+//No help, variable specified on the command line.
+OVERLAY_CONFIG:UNINITIALIZED=/home/alexis/Repos/zephyr_repo/zephyr-course/twister-out/native_sim_native/host_gnu/zephyr-course/tests/ring_buf/homework.unit.ring_buf/twister/testsuite_extra.conf
+
 //Path to a program.
 PAHOLE:FILEPATH=PAHOLE-NOTFOUND
 
@@ -370,7 +373,7 @@ SOC_FULL_DIR:PATH=/home/alexis/Repos/zephyr_repo/deps/zephyr/soc/native/inf_cloc
 TC_NAME:UNINITIALIZED=homework.unit.ring_buf
 
 //No help, variable specified on the command line.
-TC_RUNID:UNINITIALIZED=de1fe9ea932491a647707bdccc4113cc
+TC_RUNID:UNINITIALIZED=01087de50c9801ee48ecc4aef756583c
 
 //True if toolchain supports libstdc++
 TOOLCHAIN_HAS_GLIBCXX:BOOL=ON
