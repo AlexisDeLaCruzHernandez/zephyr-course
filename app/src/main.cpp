@@ -34,7 +34,7 @@ int main(void)
             led_state = false;
         }
 
-        times_toggled = led_toggled(custom_sensor_led);
+        times_toggled = led_toggled(custom_sensor_led, 0xFFFFFFFF);
         // led_state = !led_state;
         // LOG_INF("LED state: %s, toggled %d times", led_state ? "ON" : "OFF", times_toggled);
         k_msleep(CONFIG_APP_HEARTBEAT_PERIOD_MS);
